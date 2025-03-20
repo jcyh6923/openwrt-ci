@@ -126,5 +126,13 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
 
+# 添加 Nikki 插件源
+echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git" >> feeds.conf.default
+
+# 运行 feed.sh 脚本
+wget https://github.com/nikkinikki-org/OpenWrt-nikki/raw/refs/heads/main/feed.sh -O feed.sh
+chmod +x feed.sh
+./feed.sh
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
