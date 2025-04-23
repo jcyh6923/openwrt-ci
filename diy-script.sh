@@ -134,5 +134,7 @@ wget https://github.com/nikkinikki-org/OpenWrt-nikki/raw/refs/heads/main/feed.sh
 chmod +x feed.sh
 ./feed.sh
 
+echo 'src-git kenzok8 https://github.com/kenzok8/openwrt-packages' >> feeds.conf.default
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
