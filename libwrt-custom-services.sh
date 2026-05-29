@@ -39,7 +39,7 @@ clone_pkg https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go main
 
 # msd_lite backend and LuCI app.
 clone_pkg https://github.com/ximiTech/msd_lite.git package/msd_lite main
-sed -i 's/PKG_HASH:=.*/PKG_HASH:=skip/' package/msd_lite/Makefile
+sed -i '/PKG_HASH/d' package/msd_lite/Makefile
 clone_pkg https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite main
 
 # Make init scripts executable when the upstream tree keeps file mode loosely.
