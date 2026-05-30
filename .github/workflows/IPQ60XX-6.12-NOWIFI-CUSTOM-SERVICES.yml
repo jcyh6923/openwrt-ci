@@ -106,10 +106,10 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         echo "===== patch msd_lite hash ====="
-        find . -path '*msd_lite*/Makefile' -type f -exec sed -i 's/^PKG_HASH:=.*/PKG_HASH:=993582cfd58c16c29f5b54fd8439191259e0c931176c25d998c0dbe832fb16e6/' {} \;
+        find . -path '*msd_lite*/Makefile' -type f -exec sed -i 's/^PKG_MIRROR_HASH:=.*/PKG_MIRROR_HASH:=993582cfd58c16c29f5b54fd8439191259e0c931176c25d998c0dbe832fb16e6/' {} \;
 
-        echo "===== check msd_lite PKG_HASH ====="
-        find . -path '*msd_lite*/Makefile' -type f -exec grep -n "PKG_HASH" {} \;
+        echo "===== check msd_lite PKG_MIRROR_HASH ====="
+        find . -path '*msd_lite*/Makefile' -type f -exec grep -n "PKG_MIRROR_HASH" {} \;
 
     - name: Download DL Package(下载DL软件包)
       run: |
