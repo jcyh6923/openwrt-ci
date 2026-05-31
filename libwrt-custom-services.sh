@@ -22,11 +22,8 @@ echo "==> Prepare custom service packages"
 rm -rf package/feeds/luci/luci-app-ssr-plus \
        package/feeds/luci/luci-app-openclash \
        package/feeds/luci/luci-app-ddns-go \
-       package/feeds/luci/luci-app-msd_lite \
        package/feeds/packages/ddns-go \
-       package/feeds/packages/msd_lite \
        feeds/packages/net/ddns-go \
-       feeds/packages/net/msd_lite
 
 # SSR Plus and its companion packages.
 clone_pkg https://github.com/fw876/helloworld.git package/helloworld master
@@ -38,9 +35,6 @@ clone_pkg https://github.com/vernesong/OpenClash.git package/openclash master
 clone_pkg https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go main
 
 # msd_lite backend and LuCI app.
-clone_pkg https://github.com/ximiTech/msd_lite.git package/msd_lite main
-sed -i '/PKG_HASH/d' package/msd_lite/Makefile
-clone_pkg https://github.com/ximiTech/luci-app-msd_lite.git package/luci-app-msd_lite main
 
 # Make init scripts executable when the upstream tree keeps file mode loosely.
 find package/ddns-go package/msd_lite package/luci-app-msd_lite package/openclash package/helloworld \
