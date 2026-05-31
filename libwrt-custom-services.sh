@@ -39,6 +39,7 @@ clone_pkg https://github.com/nikkinikki-org/OpenWrt-nikki.git package/nikki main
 clone_pkg https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon master
 clone_pkg https://github.com/jarod360/luci-app-xupnpd.git package/luci-app-xupnpd main
 rm -f package/luci-app-xupnpd/root/etc/init.d/xupnpd
+find package/luci-app-xupnpd -path '*/etc/init.d/xupnpd' -type f -delete
 
 # Make init scripts executable when the upstream tree keeps file mode loosely.
 find package/ddns-go package/msd_lite package/luci-app-msd_lite package/openclash package/helloworld package/luci-app-xupnpd \
