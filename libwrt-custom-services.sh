@@ -34,6 +34,10 @@ clone_pkg https://github.com/vernesong/OpenClash.git package/openclash master
 # DDNS-GO LuCI and ddns-go backend.
 clone_pkg https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go main
 
+# Nikki and Argon theme.
+clone_pkg https://github.com/nikkinikki-org/OpenWrt-nikki.git package/nikki main
+clone_pkg https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon master
+
 # msd_lite backend and LuCI app.
 
 # Make init scripts executable when the upstream tree keeps file mode loosely.
