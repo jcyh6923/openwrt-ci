@@ -34,14 +34,13 @@ clone_pkg https://github.com/vernesong/OpenClash.git package/openclash master
 # DDNS-GO LuCI and ddns-go backend.
 clone_pkg https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go main
 
-# Nikki and Argon theme.
+# Nikki, Argon theme, and XUPNPD LuCI app.
 clone_pkg https://github.com/nikkinikki-org/OpenWrt-nikki.git package/nikki main
 clone_pkg https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon master
-
-# msd_lite backend and LuCI app.
+clone_pkg https://github.com/jarod360/luci-app-xupnpd.git package/luci-app-xupnpd main
 
 # Make init scripts executable when the upstream tree keeps file mode loosely.
-find package/ddns-go package/msd_lite package/luci-app-msd_lite package/openclash package/helloworld \
+find package/ddns-go package/msd_lite package/luci-app-msd_lite package/openclash package/helloworld package/luci-app-xupnpd \
   -path '*/root/etc/init.d/*' -type f -exec chmod +x {} \; 2>/dev/null || true
 
 # Keep the original nowifi intention clear: do not add Wi-Fi packages here.
