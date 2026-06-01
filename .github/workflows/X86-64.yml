@@ -125,6 +125,10 @@ jobs:
           sed -i "/^CONFIG_PACKAGE_${pkg}=/d" .config
           sed -i "/^# CONFIG_PACKAGE_${pkg} is not set/d" .config
         done
+        for opt in CONFIG_ISO_IMAGES CONFIG_QCOW2_IMAGES CONFIG_VDI_IMAGES CONFIG_VMDK_IMAGES CONFIG_VHDX_IMAGES CONFIG_TARGET_IMAGES_GZIP CONFIG_TARGET_ROOTFS_SQUASHFS CONFIG_TARGET_SQUASHFS_BLOCK_SIZE CONFIG_TARGET_ROOTFS_EXT4FS; do
+          sed -i "/^${opt}=/d" .config
+          sed -i "/^# ${opt} is not set/d" .config
+        done
         cat >> .config <<'EOF'
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-openclash=y
@@ -142,8 +146,18 @@ jobs:
         CONFIG_PACKAGE_miniupnpd-nftables=y
         CONFIG_PACKAGE_luci-app-zerotier=y
         CONFIG_PACKAGE_zerotier=y
+        CONFIG_TARGET_IMAGES_GZIP=y
+        # CONFIG_ISO_IMAGES is not set
+        # CONFIG_QCOW2_IMAGES is not set
+        # CONFIG_VDI_IMAGES is not set
+        # CONFIG_VMDK_IMAGES is not set
+        # CONFIG_VHDX_IMAGES is not set
+        CONFIG_TARGET_ROOTFS_SQUASHFS=y
+        CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256
+        CONFIG_TARGET_ROOTFS_EXT4FS=y
         EOF
-        sed -i 's/^        CONFIG_PACKAGE_/CONFIG_PACKAGE_/' .config
+        sed -i 's/^        CONFIG_/CONFIG_/' .config
+        sed -i 's/^        # CONFIG_/# CONFIG_/' .config
 
     - name: Download DL Package(下载DL软件包)
       run: |
