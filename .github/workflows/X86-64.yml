@@ -121,7 +121,7 @@ jobs:
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
-        for pkg in luci-app-ssr-plus luci-app-openclash luci-app-ddns-go ddns-go luci-app-msd_lite msd_lite luci-app-nikki nikki mihomo luci-app-cpufreq cpufreq luci-theme-argon xupnpd luci-app-xupnpd luci-app-upnp miniupnpd-nftables luci-app-zerotier zerotier; do
+        for pkg in luci-app-ssr-plus luci-app-openclash luci-app-ddns-go ddns-go luci-app-msd_lite msd_lite luci-app-nikki nikki mihomo luci-theme-argon xupnpd luci-app-xupnpd luci-app-upnp miniupnpd-nftables luci-app-zerotier zerotier; do
           sed -i "/^CONFIG_PACKAGE_${pkg}=/d" .config
           sed -i "/^# CONFIG_PACKAGE_${pkg} is not set/d" .config
         done
@@ -135,8 +135,6 @@ CONFIG_PACKAGE_msd_lite=y
 CONFIG_PACKAGE_luci-app-nikki=y
 CONFIG_PACKAGE_nikki=y
 CONFIG_PACKAGE_mihomo=y
-CONFIG_PACKAGE_luci-app-cpufreq=y
-CONFIG_PACKAGE_cpufreq=y
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_xupnpd=y
 CONFIG_PACKAGE_luci-app-xupnpd=y
