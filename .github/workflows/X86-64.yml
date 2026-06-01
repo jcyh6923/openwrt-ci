@@ -2,7 +2,8 @@ name: X86-64
 
 on:
   workflow_dispatch:
-
+permissions:
+  contents: write
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
@@ -104,12 +105,46 @@ jobs:
         wget -O feeds/packages/net/smartdns/Makefile https://raw.githubusercontent.com/breeze303/openwrt-smartdns/refs/heads/master/Makefile
         sed -i 's/609fec024396a3a26278ef9fe7bd49aeca478e3163fc53c699a5f402fa0320f0/f8bfb91ae0992dd62392ebb2b7d968d514f7cbc3cc6a5d975dafdd6b27bf0a0c/g' feeds/packages/net/smartdns/Makefile
         mkdir -p package/netspeedtest && mv openwrt_pkgs/luci-app-netspeedtest openwrt_pkgs/speedtest-cli package/netspeedtest/ && rm -rf openwrt_pkgs
+
+        git clone --depth 1 https://github.com/fw876/helloworld.git package/helloworld
+        git clone --depth 1 https://github.com/vernesong/OpenClash.git package/openclash
+        git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+        git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki.git package/nikki
+        git clone --depth 1 https://github.com/jarod360/luci-app-xupnpd.git package/luci-app-xupnpd
+        rm -f package/luci-app-xupnpd/root/etc/init.d/xupnpd
+        find package/luci-app-xupnpd -path '*/etc/init.d/xupnpd' -type f -delete
+
         ./scripts/feeds install -a
 
     - name: Load Custom Configuration(加载自定义配置)
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        cd $OPENWRT_PATH
+        for pkg in luci-app-ssr-plus luci-app-openclash luci-app-ddns-go ddns-go luci-app-msd_lite msd_lite luci-app-nikki nikki mihomo luci-app-cpufreq cpufreq luci-theme-argon xupnpd luci-app-xupnpd luci-app-upnp miniupnpd-nftables luci-app-zerotier zerotier; do
+          sed -i "/^CONFIG_PACKAGE_${pkg}=/d" .config
+          sed -i "/^# CONFIG_PACKAGE_${pkg} is not set/d" .config
+        done
+        cat >> .config <<'EOF'
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_ddns-go=y
+CONFIG_PACKAGE_luci-app-msd_lite=y
+CONFIG_PACKAGE_msd_lite=y
+CONFIG_PACKAGE_luci-app-nikki=y
+CONFIG_PACKAGE_nikki=y
+CONFIG_PACKAGE_mihomo=y
+CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_cpufreq=y
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_xupnpd=y
+CONFIG_PACKAGE_luci-app-xupnpd=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_miniupnpd-nftables=y
+CONFIG_PACKAGE_luci-app-zerotier=y
+CONFIG_PACKAGE_zerotier=y
+EOF
 
     - name: Download DL Package(下载DL软件包)
       run: |
