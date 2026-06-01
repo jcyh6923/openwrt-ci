@@ -6,7 +6,6 @@ on:
     paths:
       - '.github/workflows/X86-64.yml'
       - 'configs/x86-64.config'
-      - 'files/**'
 
 permissions:
   contents: write
@@ -124,7 +123,6 @@ jobs:
 
     - name: Load Custom Configuration(加载自定义配置)
       run: |
-        [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         for pkg in luci-app-ssr-plus luci-app-openclash luci-app-ddns-go ddns-go luci-app-msd_lite msd_lite luci-app-nikki nikki mihomo luci-theme-argon xupnpd luci-app-xupnpd luci-app-upnp miniupnpd-nftables luci-app-zerotier zerotier; do
