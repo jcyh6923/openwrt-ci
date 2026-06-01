@@ -132,23 +132,24 @@ jobs:
           sed -i "/^# CONFIG_PACKAGE_${pkg} is not set/d" .config
         done
         cat >> .config <<'EOF'
-CONFIG_PACKAGE_luci-app-ssr-plus=y
-CONFIG_PACKAGE_luci-app-openclash=y
-CONFIG_PACKAGE_luci-app-ddns-go=y
-CONFIG_PACKAGE_ddns-go=y
-CONFIG_PACKAGE_luci-app-msd_lite=y
-CONFIG_PACKAGE_msd_lite=y
-CONFIG_PACKAGE_luci-app-nikki=y
-CONFIG_PACKAGE_nikki=y
-CONFIG_PACKAGE_mihomo=y
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_xupnpd=y
-CONFIG_PACKAGE_luci-app-xupnpd=y
-CONFIG_PACKAGE_luci-app-upnp=y
-CONFIG_PACKAGE_miniupnpd-nftables=y
-CONFIG_PACKAGE_luci-app-zerotier=y
-CONFIG_PACKAGE_zerotier=y
-EOF
+        CONFIG_PACKAGE_luci-app-ssr-plus=y
+        CONFIG_PACKAGE_luci-app-openclash=y
+        CONFIG_PACKAGE_luci-app-ddns-go=y
+        CONFIG_PACKAGE_ddns-go=y
+        CONFIG_PACKAGE_luci-app-msd_lite=y
+        CONFIG_PACKAGE_msd_lite=y
+        CONFIG_PACKAGE_luci-app-nikki=y
+        CONFIG_PACKAGE_nikki=y
+        CONFIG_PACKAGE_mihomo=y
+        CONFIG_PACKAGE_luci-theme-argon=y
+        CONFIG_PACKAGE_xupnpd=y
+        CONFIG_PACKAGE_luci-app-xupnpd=y
+        CONFIG_PACKAGE_luci-app-upnp=y
+        CONFIG_PACKAGE_miniupnpd-nftables=y
+        CONFIG_PACKAGE_luci-app-zerotier=y
+        CONFIG_PACKAGE_zerotier=y
+        EOF
+        sed -i 's/^        CONFIG_PACKAGE_/CONFIG_PACKAGE_/' .config
 
     - name: Download DL Package(下载DL软件包)
       run: |
