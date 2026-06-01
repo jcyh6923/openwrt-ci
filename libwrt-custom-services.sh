@@ -34,11 +34,9 @@ clone_pkg https://github.com/vernesong/OpenClash.git package/openclash master
 # DDNS-GO LuCI and ddns-go backend.
 clone_pkg https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go main
 
-# Nikki, themes, and XUPNPD LuCI app.
+# Nikki, Argon theme, and XUPNPD LuCI app.
 clone_pkg https://github.com/nikkinikki-org/OpenWrt-nikki.git package/nikki main
 clone_pkg https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon master
-clone_pkg https://github.com/0x676e67/luci-theme-design.git package/luci-theme-design main
-sed -i 's/^PKG_VERSION:=5\.8\.0-20240106/PKG_VERSION:=5.8.0\nPKG_RELEASE:=20240106/' package/luci-theme-design/Makefile
 clone_pkg https://github.com/jarod360/luci-app-xupnpd.git package/luci-app-xupnpd main
 rm -f package/luci-app-xupnpd/root/etc/init.d/xupnpd
 find package/luci-app-xupnpd -path '*/etc/init.d/xupnpd' -type f -delete

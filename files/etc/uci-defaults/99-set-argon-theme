@@ -2,7 +2,7 @@
 
 uci -q batch <<'EOF'
 set luci.main=core
-set luci.main.mediaurlbase='/luci-static/design'
+set luci.main.mediaurlbase='/luci-static/argon'
 commit luci
 EOF
 
