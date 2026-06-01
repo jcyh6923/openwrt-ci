@@ -2,6 +2,12 @@ name: X86-64
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/X86-64.yml'
+      - 'configs/x86-64.config'
+      - 'files/**'
+
 permissions:
   contents: write
 
